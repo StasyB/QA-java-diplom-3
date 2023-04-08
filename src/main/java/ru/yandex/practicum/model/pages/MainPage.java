@@ -21,8 +21,9 @@ public class MainPage {
     private final SelenideElement profileLink = $(By.xpath("//p[text()='Личный Кабинет']"));
     private final SelenideElement createBurgerText = $(By.xpath("//h1[text()='Соберите бургер']"));
     private final SelenideElement bunsTab = $(By.xpath(".//span[text()='Булки']/.."));
-    private final SelenideElement saucesTab = $(By.xpath("//span[text()='Соусы']//parent::div"));
-    private final SelenideElement fillingsTab = $(By.xpath("//span[text()='Начинки']//parent::div"));
+    private final SelenideElement saucesTab = $(By.xpath("//span[text()='Соусы']/.."));
+    private final SelenideElement fillingsTab = $(By.xpath("//span[text()='Начинки']/.."));
+    private final By activeSection = By.xpath("//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']");
 
     @Step
     public LoginPage clickLogin() {
@@ -64,20 +65,20 @@ public class MainPage {
 
     public void showAvailableBuns() {
         bunsTab.click();
-        new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='Краторная булка N-200i']")));
+        new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(5))
+                .until(ExpectedConditions.textToBePresentInElementLocated(activeSection, "Булки"));
     }
 
     public void showAvailableSauces() {
         saucesTab.click();
-        new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='Соус Spicy-X']")));
+        new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(5))
+                .until(ExpectedConditions.textToBePresentInElementLocated(activeSection, "Соусы"));
     }
 
     public void showAvailableFillings() {
         fillingsTab.click();
-        new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='Мини-салат Экзо-Плантаго']")));
+        new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(5))
+                .until(ExpectedConditions.textToBePresentInElementLocated(activeSection, "Начинки"));
     }
 
 }

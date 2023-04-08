@@ -62,10 +62,8 @@ public class NavigationIngredientsTest {
     @Test
     @DisplayName("Test: the crossing to the Fillings section is correct.")
     public void crossingSectionFillingsIsCorrect() {
-        mainPage.showAvailableFillings();
-        mainPage.showAvailableBuns();
         mainPage.showAvailableSauces();
+        mainPage.showAvailableFillings();
         assertEquals("Something went wrong. Didn't find the Fillings section.", "Начинки", mainPage.getFillingsTabText());
     }
-
 }
